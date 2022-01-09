@@ -1,5 +1,5 @@
-using ContosoPizza.Models;
-using ContosoPizza.Services;
+using Core.Entities;
+using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContosoPizza.Controllers;

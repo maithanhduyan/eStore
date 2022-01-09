@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorPagesPizza.Models;
-using RazorPagesPizza.Services;
-
-namespace RazorPagesPizza.Pages
+using Core.Entities;
+using Core.Services;
+namespace eStore.Pages
 {
     public class PizzaModel : PageModel
     {
