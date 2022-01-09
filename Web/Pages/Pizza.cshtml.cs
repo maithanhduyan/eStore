@@ -10,7 +10,6 @@ namespace RazorPagesPizza.Pages
         [BindProperty]
         public Pizza NewPizza { get; set; } = new();
         public List<Pizza> pizzas = new();
-
         public void OnGet()
         {
             pizzas = PizzaService.GetAll();
