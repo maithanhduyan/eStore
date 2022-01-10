@@ -25,6 +25,47 @@ Create Class Lib
 
 > dotnet new classlib -o Core
 
+Create Infrastructure Project
+
+> dotnet new classlib -o Infrastructure
+
 Add project in to solution
 
 > dotnet sln add Web/Web.csproj
+> dotnet sln add API/API.csproj
+> dotnet sln add Infrastructure/Infrastructure.csproj
+
+### [Entity Framework Core ](https://docs.microsoft.com/en-us/ef/core/)
+
+In Infrastructure Project
+
+> cd Infrastructure
+> dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 6.0.1
+> dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 6.0.2
+> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0.1
+> dotnet add package Microsoft.EntityFrameworkCore.Cosmos --version 6.0.1
+> dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.1
+> dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.0
+> dotnet add package FirebirdSql.EntityFrameworkCore.Firebird --version 8.5.4
+> dotnet add package MySql.EntityFrameworkCore --version 5.0.8
+> dotnet add package Oracle.EntityFrameworkCore --version 6.21.5
+
+- Add reference project
+
+  > dotnet add Test/EFCore/EFCore.csproj reference Infrastructure/Infrastructure.csproj
+
+##### [Razor Pages with Entity Framework Core in ASP.NET Core ](https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-6.0&tabs=visual-studio-code)
+
+```
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```
+
+```
+dotnet aspnet-codegenerator razorpage -m Student -dc Infrastructure.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries -sqlite
+
+```
