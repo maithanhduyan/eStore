@@ -1,26 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-// Register the EF Core SchoolContext
-builder.Services.AddDbContext<ApllicationContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("ApplicationContextSQLite")));
-
-// builder.Services.AddDbContext<ApllicationContext>(options =>
-//     options.UseNpgsql(builder.Configuration.GetConnectionString("ApplicationContextPostgreSQL")));
-
-// builder.Services.AddDbContext<ApllicationContext>(options =>
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationContextSQLServer")));
-
-// builder.Services.AddDbContext<ApllicationContext>(options =>
-// options.UseInMemoryDatabase(databaseName: "Test"));
-
-
-
+//Register the EF Core ApplicationDbContext
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
 
 var app = builder.Build();
 
@@ -32,14 +21,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+#region Data Seeder
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    var context = services.GetRequiredService<ApllicationContext>();
+    var context = services.GetRequiredService<ApplicationDbContext>();
     context.Database.EnsureCreated();
-    DbInitializer.Initialize(context);
+    await DbInitializer.InitializeAsync(context);
 }
+#endregion
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

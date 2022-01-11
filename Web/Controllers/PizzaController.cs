@@ -1,6 +1,6 @@
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Infrastructure.Data;
 
 namespace Web.Controllers
 {
@@ -8,8 +8,8 @@ namespace Web.Controllers
     {
         private readonly ILogger<PizzaController> _logger;
 
-        private readonly ApllicationContext _context;
-        public PizzaController(ILogger<PizzaController> logger, ApllicationContext context)
+        private readonly ApplicationDbContext _context;
+        public PizzaController(ILogger<PizzaController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;

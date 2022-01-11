@@ -54,6 +54,19 @@ In Infrastructure Project
 
   > dotnet add Test/EFCore/EFCore.csproj reference Infrastructure/Infrastructure.csproj
 
+- Create table in database
+
+```
+dotnet ef migrations add 0000InitialCreate --context Web.Data.ApplicationDbContext -o Data/Migrations
+dotnet ef database update
+```
+
+- Create SQL Script
+
+```
+dotnet ef migrations script -o Data/Migrations/Create.sql
+```
+
 ##### [Razor Pages with Entity Framework Core in ASP.NET Core ](https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-6.0&tabs=visual-studio-code)
 
 ```
