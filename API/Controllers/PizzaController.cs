@@ -1,5 +1,5 @@
-using Core.Entities;
 using Core.Services;
+using EStore.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContosoPizza.Controllers;
