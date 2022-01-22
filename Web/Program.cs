@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using EStore.Infrastructure.Data;
+using EStore.DomainServices.Products;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +11,14 @@ builder.Services.AddRazorPages();
 //Register the EF Core ApplicationDbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
+builder.Services.AddScoped<IProductService, ProductService>();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
 
 
-var app = builder.Build();
 
+var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.

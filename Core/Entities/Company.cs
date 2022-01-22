@@ -1,5 +1,6 @@
 
 namespace EStore.Core.Entities;
+
 public class Company
 {
     public string Id { get; set; }

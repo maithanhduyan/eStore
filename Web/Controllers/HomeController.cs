@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using EStore.Core.Entities;
+using EStore.DomainServices.Products;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
@@ -7,13 +9,19 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductService productService)
         {
             _logger = logger;
+            this._productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            return View(await _productService.AllProduct());
+        }
+        public IActionResult Cart()
         {
             return View();
         }
@@ -27,6 +35,7 @@ namespace Web.Controllers
         {
             return View();
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
