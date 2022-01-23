@@ -18,10 +18,10 @@ public static class DbInitializer
     static IEnumerable<Product> GetPreconfiguredProduct(ApplicationDbContext context)
     {
         return new List<Product> {
-            new Product{Id="P0001",Name="Toothbrush"}
+            new Product{Id="P0001",Name="Thuốc trị ngứa da đầu Roto Gold 30ml",Barcode="4987241146352",Description =""},
+            new Product{Id="P0002",Name="Thuốc nhuộm CEILO",Barcode="4987205286278",Description =""},
+            new Product{Id="P0003",Name="Dầu gội trị ngứa LION 320ml",Barcode="4903301437246",Description =""}
         };
     }
-
-
 
 }

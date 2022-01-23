@@ -20,7 +20,7 @@ mkdir API
 mkdir ApplicationCore
 mkdir Infrastructure
 cd Web
-dotnet new webapp -f net6.0
+dotnet new mvc -f net6.0 -o Web
 
 cd ..
 cd API
@@ -37,6 +37,8 @@ dotnet new classlib -o Infrastructure
 cd..
 cd Admin
 dotnet new webapi -f net6.0
+
+dotnet new mvc -o Admin
 
 ```
 
