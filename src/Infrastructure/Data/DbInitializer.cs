@@ -1,4 +1,4 @@
-using EStore.ApplicationCore.Entities.Product;
+using EStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace EStore.Infrastructure.Data;
 
