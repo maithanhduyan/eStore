@@ -29,10 +29,16 @@ Create Infrastructure Project
 
 > dotnet new classlib -o Infrastructure
 
+Create Services Project
+
+> dotnet new classlib -o Services
+
 Add project in to solution
 
 > dotnet sln add Web/Web.csproj
 > dotnet sln add API/API.csproj
+> dotnet sln add Core/Core.csproj
+> dotnet sln add Services/Services.csproj
 > dotnet sln add Infrastructure/Infrastructure.csproj
 
 ### [Entity Framework Core ](https://docs.microsoft.com/en-us/ef/core/)
@@ -53,6 +59,11 @@ In Infrastructure Project
 - Add reference project
 
   > dotnet add Test/EFCore/EFCore.csproj reference Infrastructure/Infrastructure.csproj
+  > dotnet add Web/Web.csproj reference Infrastructure/Infrastructure.csproj
+  > dotnet add Web/Web.csproj reference Core/Core.csproj
+  > dotnet add Web/Web.csproj reference Services/Services.csproj
+  > dotnet add Services/Services.csproj reference Core/Core.csproj
+  > dotnet add Services/Services.csproj reference Infrastructure/Infrastructure.csproj
 
 - Create table in database
 
