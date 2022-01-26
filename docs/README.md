@@ -129,10 +129,12 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 dotnet tool install --global dotnet-ef
 dotnet ef database update
+dotnet ef migrations add InitialModel --context applicationdbcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Data/Migrations
+dotnet ef migrations add InitialIdentityModel --context appidentitydbcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Identity/Migrations
 ```
 
 create Database script
 
 ```
-dotnet ef migrations script -o Data/Migrations/Create.sql
+dotnet ef migrations script --context applicationdbcontext -p ../Infrastructure/Infrastructure.csproj  -s Web.csproj -o ../Infrastructure/Data/Migrations/Create.sql
 ```
