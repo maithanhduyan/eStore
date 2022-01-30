@@ -30,6 +30,7 @@ cd ..
 cd ApplicationCore
 dotnet new classlib -o Entities
 dotnet new classlib -o Services
+dotnet new classlib -o Repositories
 
 cd ..
 dotnet new classlib -o Infrastructure
@@ -50,6 +51,7 @@ dotnet sln add src/API/API.csproj
 dotnet sln add src/Infrastructure/Infrastructure.csproj
 dotnet sln add src/ApplicationCore/Entities/Entities.csproj
 dotnet sln add src/ApplicationCore/Services/Services.csproj
+dotnet sln add src/ApplicationCore/Repositories/Repositories.csproj
 dotnet sln add src/Admin/Admin.csproj
 
 
@@ -58,21 +60,25 @@ dotnet sln add src/Admin/Admin.csproj
 cd src
 
 ```
-dotnet add Web/Web.csproj reference Infrastructure/Infrastructure.csproj
-dotnet add Web/Web.csproj reference ApplicationCore/Entities/Entities.csproj
-dotnet add Web/Web.csproj reference ApplicationCore/Services/Services.csproj
+dotnet add src/Web/Web.csproj reference src/Infrastructure/Infrastructure.csproj
+dotnet add src/Web/Web.csproj reference src/ApplicationCore/Entities/Entities.csproj
+dotnet add src/Web/Web.csproj reference src/ApplicationCore/Services/Services.csproj
 
-dotnet add Admin/Admin.csproj reference Infrastructure/Infrastructure.csproj
-dotnet add Admin/Admin.csproj reference ApplicationCore/Entities/Entities.csproj
-dotnet add Admin/Admin.csproj reference ApplicationCore/Services/Services.csproj
+dotnet add src/Admin/Admin.csproj reference src/Infrastructure/Infrastructure.csproj
+dotnet add src/Admin/Admin.csproj reference src/ApplicationCore/Entities/Entities.csproj
+dotnet add src/Admin/Admin.csproj reference src/ApplicationCore/Services/Services.csproj
 
 
-dotnet add API/API.csproj reference Infrastructure/Infrastructure.csproj
-dotnet add API/API.csproj reference ApplicationCore/Entities/Entities.csproj
-dotnet add API/API.csproj reference ApplicationCore/Services/Services.csproj
+dotnet add src/API/API.csproj reference src/Infrastructure/Infrastructure.csproj
+dotnet add src/API/API.csproj reference src/ApplicationCore/Entities/Entities.csproj
+dotnet add src/API/API.csproj reference src/ApplicationCore/Services/Services.csproj
 
-dotnet add ApplicationCore/Services/Services.csproj reference ApplicationCore/Entities/Entities.csproj
-dotnet add Infrastructure/Infrastructure.csproj reference ApplicationCore/Entities/Entities.csproj
+dotnet add src/ApplicationCore/Services/Services.csproj reference src/ApplicationCore/Entities/Entities.csproj
+dotnet add src/ApplicationCore/Services/Services.csproj reference src/ApplicationCore/Repositories/Repositories.csproj
+dotnet add src/Infrastructure/Infrastructure.csproj reference src/ApplicationCore/Entities/Entities.csproj
+
+dotnet add src/ApplicationCore/Repositories/Repositories.csproj reference src/Infrastructure/Infrastructure.csproj
+
 
 ```
 

@@ -4,6 +4,6 @@ namespace EStore.Domain.Services;
 public interface IProductService
 {
     Task<bool> AddProduct(Product newProduct);
-
-    Task<IEnumerable<Product>> AllProduct();
+    Task<List<Product>> AllProduct();
+    IEnumerable<Product> GetAll();
 }
