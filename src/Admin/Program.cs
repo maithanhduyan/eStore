@@ -1,7 +1,16 @@
+using EStore.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using EStore.Domain.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+EStore.Infrastructure.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
+
+// Services Dependency Injection
+builder.Services.AddCoreServices(builder.Configuration);
 
 var app = builder.Build();
 
