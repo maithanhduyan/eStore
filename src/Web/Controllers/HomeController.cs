@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using EStore.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
@@ -8,14 +9,17 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    private readonly IProductService _productService;
+
+    public HomeController(ILogger<HomeController> logger, IProductService productService)
     {
         _logger = logger;
+        _productService = productService;
     }
 
     public IActionResult Index()
     {
-        return View();
+        return View(_productService.GetAll());
     }
 
     public IActionResult Privacy()
