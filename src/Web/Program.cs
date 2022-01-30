@@ -1,3 +1,4 @@
+using EStore.Domain.Services;
 using EStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,13 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//Register the EF Core ApplicationDbContext
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnection")));
+EStore.Infrastructure.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
 
-// DateTime on Postgresql
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
-
+// Services Dependency Injection
+builder.Services.AddCoreServices(builder.Configuration);
 
 var app = builder.Build();
 
