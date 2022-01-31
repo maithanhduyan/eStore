@@ -23,7 +23,8 @@
                     <h5 class="card-title">Datatables</h5>
                     <p>Add lightweight datatables to your project with using the <a
                             href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple
-                            DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to
+                            DataTables</a> library. Just add <code>.datatable</code> class name to any table you
+                        wish to
                         conver to a datatable</p>
 
                     <!-- Table with stripped rows -->
@@ -32,27 +33,40 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
-                                <th scope="col">Barcode</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Created Date</th>
-                                <th scope="col">Updated Date</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.Barcode)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.Category)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.SalePrice)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.CreatedDate)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.UpdatedDate)</th>
                                 <th scope="col">@Html.DisplayNameFor(model => model.Description)</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @{
+                                var i = 0;
+                            }
                             @foreach (var item in Model)
                             {
-
+                                i++;
                                 <tr>
-                                    <th scope="row">#</th>
+                                    <th scope="row">@i</th>
                                     <td> @Html.DisplayFor(modelItem => item.Name)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Barcode)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SalePrice)</td>
                                     <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
                                     <td>@Html.DisplayFor(modelItem => item.UpdatedDate)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td>
+                                        <a asp-controller="Product" asp-action="Edit" title="Edit"><i
+                                            class="bi bi-pencil-square"></i></a>
+                                        <a asp-controller="Product" asp-action="Delete" title="Delete"><i
+                                            class="bi bi-trash"></i></a>
+                                    </td>
                                 </tr>
                             }
+
                         </tbody>
                     </table>
                     <!-- End Table with stripped rows -->

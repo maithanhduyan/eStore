@@ -22,6 +22,26 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Create Database
+using (var scope = app.Services.CreateScope())
+{
+    bool _isCreatedDataSample = Boolean.Parse(builder.Configuration.GetSection("CreateDatabaseSample").Value);
+    Console.WriteLine("Databse Sample " + _isCreatedDataSample);
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<ApplicationDbContext>();
+
+    if (context.Database.EnsureCreated())
+    {
+        if (_isCreatedDataSample)
+        {
+            // Data Sample
+            await DbInitializer.InitializeAsync(context);
+        }
+    }
+
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
